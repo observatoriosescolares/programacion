@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Simple Spreadsheet Sample with JQuery</title>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+<div class="results"></div> 
+<script>
+//  Accedemos a la hoja de google siguiente:   https://docs.google.com/spreadsheets/d/1a6JTtoCizcp_lqoaCpk3E5PjjzE7k2CWJV0XUVusiOY/edit#gid=0
+//  Compartimos la hoja como página web con todo el mundo. 
+//  https://docs.google.com/spreadsheets/d/1a6JTtoCizcp_lqoaCpk3E5PjjzE7k2CWJV0XUVusiOY/edit?usp=sharing
+//  Con el identificador podemos consumir los datos cambiando la url y utilizando el identificador. 
+	var spreadsheetID = "1a6JTtoCizcp_lqoaCpk3E5PjjzE7k2CWJV0XUVusiOY";
+ 	var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json";
+ 	$.getJSON(url, function(data) {
+		var entry = data.feed.entry;
+ 		$(entry).each(function(){
+ 			//$('.results').prepend('<p>'+this.gsx$nombre.$t+' '+this.gsx$apellidos.$t+' '+this.gsx$telefono.$t+'</p>');
+			$('.results').prepend('<p>NOMBRE: '+this.gsx$nombre.$t+'APELLIDOS: '+this.gsx$apellido.$t+'</p>');
+ 		});
+ 	});
+</script>
+</body>
+</html>
