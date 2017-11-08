@@ -1,3 +1,6 @@
+<!-- Lectura de una hoja de cálculo de google que se ha compartido como página web de forma pública -->
+<!-- En concreto accedemos a la hoja de ejemplo: https://docs.google.com/spreadsheets/d/1a6JTtoCizcp_lqoaCpk3E5PjjzE7k2CWJV0XUVusiOY/edit#gid=0 -->
+<!-- La url de la página compartida es:  https://docs.google.com/spreadsheets/d/1a6JTtoCizcp_lqoaCpk3E5PjjzE7k2CWJV0XUVusiOY/edit?usp=sharing-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,17 +10,13 @@
 <body>
 <div class="results"></div> 
 <script>
-//  Accedemos a la hoja de google siguiente:   https://docs.google.com/spreadsheets/d/1a6JTtoCizcp_lqoaCpk3E5PjjzE7k2CWJV0XUVusiOY/edit#gid=0
-//  Compartimos la hoja como página web con todo el mundo. 
-//  https://docs.google.com/spreadsheets/d/1a6JTtoCizcp_lqoaCpk3E5PjjzE7k2CWJV0XUVusiOY/edit?usp=sharing
-//  Con el identificador podemos consumir los datos cambiando la url y utilizando el identificador. 
+  // Para acceder a los datos vamos a utilizar el identificador de la url inicial modificando la url de petición como se indica a continuación 
 	var spreadsheetID = "1a6JTtoCizcp_lqoaCpk3E5PjjzE7k2CWJV0XUVusiOY";
  	var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json";
  	$.getJSON(url, function(data) {
 		var entry = data.feed.entry;
  		$(entry).each(function(){
- 			//$('.results').prepend('<p>'+this.gsx$nombre.$t+' '+this.gsx$apellidos.$t+' '+this.gsx$telefono.$t+'</p>');
-			$('.results').prepend('<p>NOMBRE: '+this.gsx$nombre.$t+'APELLIDOS: '+this.gsx$apellido.$t+'</p>');
+			$('.results').prepend('<p>CENTRO: '+this.gsx$centro.$t+'  DESCRIPCION: '+this.gsx$descripcion.$t+'  DIRECCION: '+this.gsx$direccion.$t+'</p>');
  		});
  	});
 </script>
